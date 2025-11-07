@@ -1,6 +1,8 @@
 # powerwall3mqtt
 A simple Home Assistant Add On that acts as a bridge between the Powerwall 3 TEDAPI and MQTT.
 
+> **Not using Home Assistant OS?** See [STANDALONE.md](STANDALONE.md) for running with Docker Compose.
+
 ## Current state
 - Powerwall 3 local access requires a direct connection to the TeslaPW_XXXXX WiFi network.  The device running this add-on must have an IP from that network, which is 192.168.91.x/24.  A wired ethernet connection **will not work**.
 - The bridge can deal with a single group of one or more Powerwall 3s.  It might also support expansion units, but I have none to test with.

@@ -1,0 +1,43 @@
+services:
+  powerwall3mqtt:
+    build:
+      context: .
+      dockerfile: Dockerfile.standalone
+    container_name: powerwall3mqtt
+    restart: unless-stopped
+
+    # Use host network mode so the container can access the Powerwall at 192.168.91.1
+    network_mode: host
+
+    environment:
+      # Required: Powerwall gateway password
+      POWERWALL3MQTT_CONFIG_TEDAPI_PASSWORD: "${TEDAPI_PASSWORD}"
+
+      # Required: MQTT broker connection
+      POWERWALL3MQTT_CONFIG_MQTT_HOST: "${MQTT_HOST}"
+      POWERWALL3MQTT_CONFIG_MQTT_PORT: "${MQTT_PORT:-1883}"
+
+      # Optional: MQTT authentication
+      POWERWALL3MQTT_CONFIG_MQTT_USERNAME: "${MQTT_USERNAME:-}"
+      POWERWALL3MQTT_CONFIG_MQTT_PASSWORD: "${MQTT_PASSWORD:-}"
+
+      # Optional: MQTT SSL/TLS
+      POWERWALL3MQTT_CONFIG_MQTT_SSL: "${MQTT_SSL:-false}"
+      # POWERWALL3MQTT_CONFIG_MQTT_CA_CERT: "/certs/ca.crt"
+      # POWERWALL3MQTT_CONFIG_MQTT_CERT: "/certs/client.crt"
+      # POWERWALL3MQTT_CONFIG_MQTT_KEY: "/certs/client.key"
+      # POWERWALL3MQTT_CONFIG_MQTT_INSECURE: "false"
+
+      # Optional: MQTT topic configuration
+      POWERWALL3MQTT_CONFIG_MQTT_BASE_TOPIC: "${MQTT_BASE_TOPIC:-homeassistant}"
+
+      # Optional: Powerwall polling configuration
+      POWERWALL3MQTT_CONFIG_TEDAPI_POLL_INTERVAL: "${TEDAPI_POLL_INTERVAL:-30}"
+      POWERWALL3MQTT_CONFIG_TEDAPI_REPORT_VITALS: "${TEDAPI_REPORT_VITALS:-false}"
+
+      # Optional: Logging
+      POWERWALL3MQTT_CONFIG_LOG_LEVEL: "${LOG_LEVEL:-INFO}"
+
+    # Uncomment if you need to mount certificates for MQTT SSL
+    # volumes:
+    #   - ./certs:/certs:ro

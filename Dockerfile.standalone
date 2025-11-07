@@ -1,0 +1,26 @@
+FROM alpine:latest
+
+# Install Python and system dependencies
+RUN apk add --no-cache \
+    python3 \
+    py3-pip \
+    py3-yaml \
+    py3-cachetools \
+    py3-requests \
+    py3-protobuf \
+    tini
+
+# Install paho-mqtt via pip (not available in Alpine packages)
+RUN pip3 install --break-system-packages paho-mqtt
+
+# Copy application code
+COPY app /app
+
+# Set working directory
+WORKDIR /app
+
+# Use tini as init system for proper signal handling
+ENTRYPOINT ["/sbin/tini", "--"]
+
+# Run the application
+CMD ["python3", "powerwall3mqtt.py"]
