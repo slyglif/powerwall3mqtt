@@ -270,8 +270,8 @@ class TeslaEnergyDeviceAPI:
             except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
                 raise exceptions.TEDAPIException("Failed to reach host after multiple retries") from e
     
-        self.check_http_response(r)
-        self._pwcooldown = time.perf_counter()
+            self.check_http_response(r)
+            self._pwcooldown = time.perf_counter()
         return r
 
 
@@ -330,7 +330,7 @@ class Powerwall3API:
             tesla: TeslaEnergyDeviceAPI,
             cacheexpire: int = 5,
             configexpire: int = 5,
-            timeout: int = 10) -> None:
+            timeout: int = 5) -> None:
         self._tesla = tesla
         self._timeout = timeout
 
