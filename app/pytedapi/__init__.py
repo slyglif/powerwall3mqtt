@@ -227,7 +227,7 @@ class TeslaEnergyDeviceAPI:
             except (requests.exceptions.ConnectionError, requests.exceptions.Timeout) as e:
                 raise exceptions.TEDAPIException("Failed to reach host after multiple retries") from e
     
-        self.check_http_response(r)
+            self.check_http_response(r)
         return r
 
     def post(self, path, force=False, headers=None, data=None):
