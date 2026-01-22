@@ -1,6 +1,6 @@
 name: "Powerwall3 to MQTT"
 description: "A bridge between a Tesla Powerwall3 and MQTT"
-version: "0.5.2"
+version: "0.6.0"
 slug: "powerwall3mqtt"
 url: "https://github.com/slyglif/powerwall3mqtt"
 init: false
