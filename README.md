@@ -1,5 +1,9 @@
 # powerwall3mqtt
-A simple Home Assistant Add On that acts as a bridge between the Powerwall 3 TEDAPI and MQTT.
+**NO LONGER MAINTAINED** A simple Home Assistant Add On that acts as a bridge between the Powerwall 3 TEDAPI and MQTT.
+
+I've recently moved away form using this add-on / app and no longer maintain it.  I'm now getting power values via the
+SPAN panel integration and energy values from the Tesla Fleet integration.  If someone would like to take this over
+please let me know and I'll update this readme to point at your forked repository.
 
 > **Not using Home Assistant OS?** See [STANDALONE.md](STANDALONE.md) for running with Docker Compose.
 
